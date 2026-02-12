@@ -10,7 +10,7 @@ import logger from './utils/logger';
 const app = express();
 
 app.use(helmet());
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: [env.APP_URL, 'http://localhost:3000'], credentials: true }));
 app.use(express.json({ limit: '5mb' }));
 
 app.get('/api/v1/health', (_req, res) => {

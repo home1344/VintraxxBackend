@@ -22,8 +22,8 @@ app.use('/api/v1/scan', scanRoutes);
 
 app.use(errorHandler);
 
-app.listen(env.PORT, () => {
-  logger.info(`VinTraxx backend running on port ${env.PORT} [${env.NODE_ENV}]`);
+app.listen(env.PORT, '0.0.0.0', () => {
+  logger.info(`VinTraxx backend running on 0.0.0.0:${env.PORT} [${env.NODE_ENV}]`);
 });
 
 export default app;

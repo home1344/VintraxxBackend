@@ -4,7 +4,7 @@
   "description": "VinTraxx SmartScan - OBD-II Vehicle Diagnostic Report System Backend",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "prisma generate && tsc",
     "start": "node dist/index.js",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "prisma:generate": "prisma generate",
@@ -26,6 +26,9 @@
     "puppeteer": "^23.6.0",
     "winston": "^3.17.0",
     "zod": "^3.23.8"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

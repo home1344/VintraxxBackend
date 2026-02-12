@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import { PrismaClient } from '@prisma/client';
 import { ScanSubmissionPayload, FullReportData } from '../types';
 import { decodeVin } from '../services/vin.service';
 import { analyzeWithAI } from '../services/ai.service';
@@ -8,8 +7,7 @@ import { generatePdf } from '../services/pdf.service';
 import { sendReportEmail } from '../services/email.service';
 import { env } from '../config/env';
 import logger from '../utils/logger';
-
-const prisma = new PrismaClient();
+import prisma from '../config/db';
 
 export async function submitScan(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {

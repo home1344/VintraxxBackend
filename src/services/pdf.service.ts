@@ -75,7 +75,8 @@ export async function generatePdf(report: FullReportData): Promise<string> {
     logger.info('Launching Puppeteer for PDF generation');
     browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu', '--disable-dev-shm-usage'],
     });
 
     const page = await browser.newPage();

@@ -1,14 +1,12 @@
 import bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
-import { PrismaClient } from '@prisma/client';
 import { env } from '../config/env';
 import { APP_CONSTANTS } from '../config/constants';
 import { JwtPayload } from '../types';
 import { AppError } from '../middleware/errorHandler';
 import { generateOtpCode } from '../utils/helpers';
 import logger from '../utils/logger';
-
-const prisma = new PrismaClient();
+import prisma from '../config/db';
 
 export async function checkEmail(email: string): Promise<boolean> {
   const user = await prisma.user.findUnique({ where: { email } });

@@ -10,7 +10,12 @@ import logger from './utils/logger';
 const app = express();
 
 app.use(helmet());
-app.use(cors({ origin: [env.APP_URL, 'http://localhost:3000'], credentials: true }));
+app.use(cors({ 
+  origin: env.NODE_ENV === 'production' 
+    ? ['https://app.vintraxx.com', 'https://vintraxx.com']
+    : ['https://app.vintraxx.com', 'https://vintraxx.com', 'http://localhost:3000', 'capacitor://localhost', 'http://localhost'], 
+  credentials: true 
+}));
 app.use(express.json({ limit: '5mb' }));
 
 app.get('/api/v1/health', (_req, res) => {

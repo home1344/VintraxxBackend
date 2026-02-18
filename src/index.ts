@@ -9,6 +9,9 @@ import logger from './utils/logger';
 
 const app = express();
 
+// Trust nginx reverse proxy headers for rate limiting
+app.set('trust proxy', true);
+
 app.use(helmet());
 app.use(cors({ 
   origin: env.NODE_ENV === 'production' 
